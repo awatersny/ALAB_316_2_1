@@ -1,6 +1,7 @@
 const setGuessPrompt = num => `Please guess a number from 1 to ${num} or click cancel to change the range:`
 const getRand = num => Math.floor(Math.random() * num + 1)
 const rangePrompt = "Please enter a number from 10 to 100 or click cancel to quit:"
+let gameOver = false
 let rangeInput = ""
 let guessInput = ""
 let chances = 0
@@ -19,15 +20,21 @@ do {
         guessInput = prompt(setGuessPrompt(outOf))
         guess = parseInt(guessInput)
         if(guess >= 1 && guess <= outOf) {
+          chances = 10
           alert(`Guess: ${guess} Target: ${target}`)
+          if(guess === target){
+            alert("CONGRATUALTIONS!!! Your guess is correct!")
+            alert("Going back to main menu...")
+          }
+          gameOver = guess === target || chances === 0
         } else {
           if(guessInput !== null){
             alert("Your guess input is invalid.  Please try again.")
           } else {
-            alert("Going back...")
+            alert("Going back to main menu...")
           }
         }
-      } while(guessInput !== null)
+      } while(guessInput !== null && !gameOver)
 
     } else {
       alert("Your input is invalid.  Please try again.")
