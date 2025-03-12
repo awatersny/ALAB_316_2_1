@@ -22,15 +22,7 @@ body.appendChild(main)
 
 init()
 
-function renderBoard(num) {
-  const board = document.createElement("div")
-  board.style.display = "flex"
-  board.style.flexWrap = "wrap"
-  board.style.alignContent = "space-around"
-  board.style.justifyContent = "space-between"
-  board.style.marginTop = "500px"
-  board.style.maxWidth = "540px"
-  main.appendChild(board)
+function renderBoard(board, num) {
   for(let i = 1; i <= num; i++){
     const cell = document.createElement("div")
     cell.style.height = "50px"
@@ -40,7 +32,15 @@ function renderBoard(num) {
     cell.style.justifyContent = "center"
     cell.style.alignItems = "center"
     cell.textContent = i
+    cell.setAttribute("id", i)
     board.appendChild(cell)
+  }
+}
+
+function clearBoard(board) {
+  while(board.firstChild) {
+    board.removeChild(board.firstChild)
+    console.log(board.childNodes)
   }
 }
 
@@ -53,17 +53,24 @@ function init() {
   btn.style.height = "80px"
   btn.style.width = "150px"
   main.appendChild(btn)
+  const board = document.createElement("div")
+  board.style.display = "flex"
+  board.style.flexWrap = "wrap"
+  board.style.alignContent = "space-around"
+  board.style.justifyContent = "space-between"
+  board.style.marginTop = "100px"
+  board.style.maxWidth = "540px"
+  main.appendChild(board)
   btn.addEventListener("click", () => {
-    console.log("clicked")
     btn.style.border = "10px inset skyblue"
     setTimeout(() => {
       btn.style.border = "10px outset skyblue"
     }, 100);
     setTimeout(() => {
       btn.setAttribute("hidden", true)
+      play()
     }, 120);
     setTimeout(() => {
-      play()
       btn.removeAttribute("hidden", true)
     }, 150)
   })
