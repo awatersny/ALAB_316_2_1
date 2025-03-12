@@ -10,47 +10,49 @@ let target = 0
 let guess = 0
 let outOf = 0
 
-do {
-  rangeInput = prompt(rangePrompt)
-  if(rangeInput !== null) {
-    outOf = parseInt(rangeInput)
-    if(outOf >= 10 && outOf <= 100) {
-      target = getRand(outOf)
-      gameOver = false
-      guessInput = ""
-      console.log(gameOver)
-      chances = outOf > 50 ? 10 : outOf > 10 ? 5 : 3
-      console.log(chances)
-      while(guessInput !== null && !gameOver) {
-        guessInput = prompt(setGuessPrompt(outOf, chances))
-        guess = parseInt(guessInput)
-        if(guess >= 1 && guess <= outOf) {
-          console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
-          if(guess === target){
-            alert("CONGRATUALTIONS!!! Your guess is correct!")
-          } else {
-            alert(chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances.")
-            if(chances > 1) {
-                alert(guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher.")
+play()
+
+function play() {
+  do {
+    rangeInput = prompt(rangePrompt)
+    if(rangeInput !== null) {
+      outOf = parseInt(rangeInput)
+      if(outOf >= 10 && outOf <= 100) {
+        target = getRand(outOf)
+        gameOver = false
+        guessInput = ""
+        chances = outOf > 50 ? 10 : outOf > 10 ? 5 : 3
+        while(guessInput !== null && !gameOver) {
+          guessInput = prompt(setGuessPrompt(outOf, chances))
+          guess = parseInt(guessInput)
+          if(guess >= 1 && guess <= outOf) {
+            console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
+            if(guess === target){
+              alert("CONGRATUALTIONS!!! Your guess is correct!")
             } else {
-              alert("Game Over")
+              alert(chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances.")
+              if(chances > 1) {
+                alert(guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher.")
+              } else {
+                alert("Game Over")
+              }
+              chances--
             }
-            chances--
-          }
-          gameOver = guess === target || chances === 0
-          if(gameOver) {
-            alert(backAlert)
-          }
-        } else {
-          if(guessInput !== null){
-            alert("Your guess input is invalid.")
+            gameOver = guess === target || chances === 0
+            if(gameOver) {
+              alert(backAlert)
+            }
           } else {
-            alert(backAlert)
+            if(guessInput !== null){
+              alert("Your guess input is invalid.")
+            } else {
+              alert(backAlert)
+            }
           }
-        }
-      } 
-    } else {
-      alert("Your input is invalid.")
+        } 
+      } else {
+        alert("Your input is invalid.")
+      }
     }
-  }
-} while (rangeInput !== null);
+  } while (rangeInput !== null);
+}
