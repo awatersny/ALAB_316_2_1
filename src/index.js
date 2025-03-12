@@ -27,7 +27,12 @@ do {
           if(guess === target){
             alert("CONGRATUALTIONS!!! Your guess is correct!")
           } else {
-            alert(chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances\n\nGame Over")
+            alert(chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances.")
+            if(chances > 1) {
+                alert(guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher.")
+            } else {
+              alert("Game Over")
+            }
             chances--
           }
           gameOver = guess === target || chances === 0
