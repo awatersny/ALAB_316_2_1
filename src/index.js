@@ -1,6 +1,13 @@
-let input = ""
+let rangeInput = ""
 do {
-  input = prompt("Please enter a number from 10 to 100:")
-  alert(input)
-  console.log(input)
-} while (input !== null);
+  let outOf = 0
+  rangeInput = prompt("Please enter a number from 10 to 100:")
+  if(rangeInput !== null) {
+    outOf = parseInt(rangeInput)
+    if(outOf > 9 && outOf < 101) {
+  
+    } else {
+      alert("Invalid Input")
+    }
+  }
+} while (rangeInput !== null);
