@@ -21,7 +21,7 @@ do {
         guess = parseInt(guessInput)
         if(guess >= 1 && guess <= outOf) {
           chances = 10
-          alert(`Guess: ${guess} Target: ${target}`)
+          console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
           if(guess === target){
             alert("CONGRATUALTIONS!!! Your guess is correct!")
             alert("Going back to main menu...")
