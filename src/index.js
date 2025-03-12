@@ -18,8 +18,31 @@ main.style.flexDirection = "column"
 main.style.alignItems = "center"
 main.style.justifyContent = "center"
 main.style.height = "500px"
+body.appendChild(main)
 
 init()
+
+function renderBoard(num) {
+  const board = document.createElement("div")
+  board.style.display = "flex"
+  board.style.flexWrap = "wrap"
+  board.style.alignContent = "space-around"
+  board.style.justifyContent = "space-between"
+  board.style.marginTop = "500px"
+  board.style.maxWidth = "540px"
+  main.appendChild(board)
+  for(let i = 1; i <= num; i++){
+    const cell = document.createElement("div")
+    cell.style.height = "50px"
+    cell.style.width = "50px"
+    cell.style.border = "2px solid black"
+    cell.style.display = "flex"
+    cell.style.justifyContent = "center"
+    cell.style.alignItems = "center"
+    cell.textContent = i
+    board.appendChild(cell)
+  }
+}
 
 function init() {
   const btn = document.createElement("button")
@@ -44,7 +67,6 @@ function init() {
       main.appendChild(btn)
     }, 150)
   })
-  body.appendChild(main)
 }
 
 function play() {
