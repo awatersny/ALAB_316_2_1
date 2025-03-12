@@ -60,11 +60,11 @@ function init() {
       btn.style.border = "10px outset skyblue"
     }, 100);
     setTimeout(() => {
-      main.removeChild(btn)
+      btn.setAttribute("hidden", true)
     }, 120);
     setTimeout(() => {
       play()
-      main.appendChild(btn)
+      btn.removeAttribute("hidden", true)
     }, 150)
   })
 }
