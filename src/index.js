@@ -14,29 +14,38 @@ const body = document.querySelector("body")
 
 const main = document.createElement("main")
 main.style.display = "flex"
+main.style.flexDirection = "column"
 main.style.alignItems = "center"
 main.style.justifyContent = "center"
 main.style.height = "500px"
 
-const btn = document.createElement("button")
-btn.textContent = "Start"
-btn.style.color = "white"
-btn.style.backgroundColor = "blue"
-btn.style.border = "10px outset skyblue"
-btn.style.height = "80px"
-btn.style.width = "150px"
+init()
 
-body.appendChild(main)
-main.appendChild(btn)
-
-btn.addEventListener("click", () => {
-  console.log("clicked")
-  btn.style.border = "10px inset skyblue"
-  setTimeout(() => {
-    btn.style.border = "10px outset skyblue"
-    play()
-  }, "0");
-})
+function init() {
+  const btn = document.createElement("button")
+  btn.textContent = "Start"
+  btn.style.color = "white"
+  btn.style.backgroundColor = "blue"
+  btn.style.border = "10px outset skyblue"
+  btn.style.height = "80px"
+  btn.style.width = "150px"
+  main.appendChild(btn)
+  btn.addEventListener("click", () => {
+    console.log("clicked")
+    btn.style.border = "10px inset skyblue"
+    setTimeout(() => {
+      btn.style.border = "10px outset skyblue"
+    }, 100);
+    setTimeout(() => {
+      main.removeChild(btn)
+    }, 120);
+    setTimeout(() => {
+      play()
+      main.appendChild(btn)
+    }, 150)
+  })
+  body.appendChild(main)
+}
 
 function play() {
   do {
