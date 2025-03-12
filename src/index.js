@@ -17,7 +17,9 @@ do {
     if(outOf >= 10 && outOf <= 100) {
       target = getRand(outOf)
       gameOver = false
-      chances = 10
+      guessInput = ""
+      console.log(gameOver)
+      chances = outOf > 50 ? 10 : outOf > 10 ? 5 : 3
       console.log(chances)
       while(guessInput !== null && !gameOver) {
         guessInput = prompt(setGuessPrompt(outOf, chances))
