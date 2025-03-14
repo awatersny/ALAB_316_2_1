@@ -81,55 +81,56 @@ function clearBoard(board) {
 
 
 function play() {
-  do {
-    //Prompt
-    rangeInput = prompt(rangePrompt)
-    if(rangeInput !== null) {
-      outOf = parseInt(rangeInput)
-      if(outOf >= 10 && outOf <= 100) {
-        target = getRand(outOf)
-        gameOver = false
-        guessInput = ""
-        chances = outOf > 50 ? 10 : outOf > 10 ? 5 : 3
-        while(guessInput !== null && !gameOver) {
-          //Prompt
-          guessInput = prompt(setGuessPrompt(outOf, chances))
-          guess = parseInt(guessInput)
-          if(guess >= 1 && guess <= outOf) {
-            console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
-            if(guess === target){
-              //Alert
-              alert("CONGRATUALTIONS!!! Your guess is correct!")
-            } else {
-              const msg = chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances."
-              if(chances > 1) {
-                //Alert
-                alert(`${msg}\n${guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher."}` )
-              } else {
-                //Alert
-                alert("Game Over")
-              }
-              chances--
-            }
-            gameOver = guess === target || chances === 0
-            if(gameOver) {
-              //Alert
-              alert(backAlert)
-            }
+  //Prompt
+  rangeInput = prompt(rangePrompt)
+  if(rangeInput !== null) {
+    outOf = parseInt(rangeInput)
+    if(outOf >= 10 && outOf <= 100) {
+      target = getRand(outOf)
+      gameOver = false
+      guessInput = ""
+      chances = outOf > 50 ? 10 : outOf > 10 ? 5 : 3
+      while(guessInput !== null && !gameOver) {
+        //Prompt
+        guessInput = prompt(setGuessPrompt(outOf, chances))
+        guess = parseInt(guessInput)
+        if(guess >= 1 && guess <= outOf) {
+          console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
+          if(guess === target){
+            //Alert
+            alert("CONGRATUALTIONS!!! Your guess is correct!")
           } else {
-            if(guessInput !== null){
+            const msg = chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances."
+            if(chances > 1) {
               //Alert
-              alert("Your guess input is invalid.")
+              alert(`${msg}\n${guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher."}` )
             } else {
               //Alert
-              alert(backAlert)
+              alert("Game Over")
             }
+            chances--
           }
-        } 
-      } else {
-        //Alert
-        alert("Your input is invalid.")
-      }
+          gameOver = guess === target || chances === 0
+          if(gameOver) {
+            //Alert
+            alert(backAlert)
+          }
+        } else {
+          if(guessInput !== null){
+            //Alert
+            alert("Your guess input is invalid.")
+          } else {
+            //Alert
+            alert(backAlert)
+          }
+        }
+      } 
+    } else {
+      //Alert
+      alert("Your input is invalid.")
     }
-  } while (rangeInput !== null);
+  }
+  if (rangeInput !== null) {
+    play()
+  }
 }
