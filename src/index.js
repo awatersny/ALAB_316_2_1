@@ -50,7 +50,7 @@ function animateButtonAndPlay(evt) {
   }, 100);
   setTimeout(() => {
     btn.setAttribute("hidden", true)
-    play()
+    mainMenu()
   }, 120);
   setTimeout(() => {
     btn.removeAttribute("hidden", true)
@@ -79,8 +79,46 @@ function clearBoard(board) {
   }
 }
 
+function play(target, gameOver, guessInput, chances) {
+  //Prompt
+  guessInput = prompt(setGuessPrompt(outOf, chances))
+  guess = parseInt(guessInput)
+  if(guess >= 1 && guess <= outOf) {
+    console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
+    if(guess === target){
+      //Alert
+      alert("CONGRATUALTIONS!!! Your guess is correct!")
+    } else {
+      const msg = chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances."
+      if(chances > 1) {
+        //Alert
+        alert(`${msg}\n${guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher."}` )
+      } else {
+        //Alert
+        alert("Game Over")
+      }
+      chances--
+    }
+    gameOver = guess === target || chances === 0
+    if(gameOver) {
+      //Alert
+      alert(backAlert)
+    }
+  } else {
+    if(guessInput !== null){
+      //Alert
+      alert("Your guess input is invalid.")
+    } else {
+      //Alert
+      alert(backAlert)
+    }
+  }
+  if(guessInput !== null && !gameOver) {
+    play()
+  }
+}
 
-function play() {
+function mainMenu() {
   //Prompt
   rangeInput = prompt(rangePrompt)
   if(rangeInput !== null) {
@@ -131,6 +169,6 @@ function play() {
     }
   }
   if (rangeInput !== null) {
-    play()
+    mainMenu()
   }
 }
