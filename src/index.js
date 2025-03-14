@@ -88,13 +88,13 @@ function play() {
       //Alert
       alert("CONGRATUALTIONS!!! Your guess is correct!")
     } else {
-      const msg = chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances."
+      const msg = "Your guess is incorrect.  Try again." 
       if(chances > 1) {
         //Alert
         alert(`${msg}\n${guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher."}` )
       } else {
         //Alert
-        alert("Game Over")
+        alert("You ran out of chances.\nGame Over")
       }
       chances--
     }
