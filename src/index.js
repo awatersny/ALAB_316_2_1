@@ -56,27 +56,29 @@ function animateButtonAndPlay(evt) {
   }, 150)
 }
 
-function renderBoard(board, num) {
-  for(let i = 1; i <= num; i++){
-    const cell = document.createElement("div")
-    cell.style.height = "50px"
-    cell.style.width = "50px"
-    cell.style.border = "2px solid black"
-    cell.style.display = "flex"
-    cell.style.justifyContent = "center"
-    cell.style.alignItems = "center"
-    cell.textContent = i
-    cell.setAttribute("id", i)
-    board.appendChild(cell)
-  }
-}
+/**-------------------Icebox functions--------------------*/
+// function renderBoard(board, num) {
+//   for(let i = 1; i <= num; i++){
+//     const cell = document.createElement("div")
+//     cell.style.height = "50px"
+//     cell.style.width = "50px"
+//     cell.style.border = "2px solid black"
+//     cell.style.display = "flex"
+//     cell.style.justifyContent = "center"
+//     cell.style.alignItems = "center"
+//     cell.textContent = i
+//     cell.setAttribute("id", i)
+//     board.appendChild(cell)
+//   }
+// }
 
-function clearBoard(board) {
-  while(board.firstChild) {
-    board.removeChild(board.firstChild)
-    console.log(board.childNodes)
-  }
-}
+// function clearBoard(board) {
+//   while(board.firstChild) {
+//     board.removeChild(board.firstChild)
+//     console.log(board.childNodes)
+//   }
+// }
+/**--------------------------------------------------------*/
 
 function play() {
   //Prompt
