@@ -43,7 +43,6 @@ btn.addEventListener("click", animateButtonAndPlay)
 function animateButtonAndPlay(evt) {
   evt.preventDefault()
   const btn = evt.target
-  console.log(evt.target)
   btn.style.border = "10px inset skyblue"
   setTimeout(() => {
     btn.style.border = "10px outset skyblue"
@@ -79,12 +78,12 @@ function clearBoard(board) {
   }
 }
 
-function play(target, gameOver, guessInput, chances) {
+function play() {
   //Prompt
+  console.log(target, gameOver, guessInput, chances)
   guessInput = prompt(setGuessPrompt(outOf, chances))
   guess = parseInt(guessInput)
   if(guess >= 1 && guess <= outOf) {
-    console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
     if(guess === target){
       //Alert
       alert("CONGRATUALTIONS!!! Your guess is correct!")
@@ -128,41 +127,7 @@ function mainMenu() {
       gameOver = false
       guessInput = ""
       chances = outOf > 50 ? 10 : outOf > 10 ? 5 : 3
-      while(guessInput !== null && !gameOver) {
-        //Prompt
-        guessInput = prompt(setGuessPrompt(outOf, chances))
-        guess = parseInt(guessInput)
-        if(guess >= 1 && guess <= outOf) {
-          console.log(`Guess: ${guess} Target: ${target}`) // Sanity check.  Delete after final build
-          if(guess === target){
-            //Alert
-            alert("CONGRATUALTIONS!!! Your guess is correct!")
-          } else {
-            const msg = chances > 1 ? "Your guess is incorrect.  Try again." : "You ran out of chances."
-            if(chances > 1) {
-              //Alert
-              alert(`${msg}\n${guess > target ? "The number you are looking for is lower." : "The number you are looking for is higher."}` )
-            } else {
-              //Alert
-              alert("Game Over")
-            }
-            chances--
-          }
-          gameOver = guess === target || chances === 0
-          if(gameOver) {
-            //Alert
-            alert(backAlert)
-          }
-        } else {
-          if(guessInput !== null){
-            //Alert
-            alert("Your guess input is invalid.")
-          } else {
-            //Alert
-            alert(backAlert)
-          }
-        }
-      } 
+      play()
     } else {
       //Alert
       alert("Your input is invalid.")
