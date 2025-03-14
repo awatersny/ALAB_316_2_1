@@ -82,7 +82,7 @@ function animateButtonAndPlay(evt) {
 
 function play() {
   //Prompt
-  console.log(target, gameOver, guessInput, chances)
+  // console.log(target, gameOver, guessInput, chances)
   guessInput = prompt(setGuessPrompt(outOf, chances))
   guess = parseInt(guessInput)
   if(guess >= 1 && guess <= outOf) {
